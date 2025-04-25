@@ -1,4 +1,4 @@
-name: Nodejs CI
+name: Nodejs CI/CD
 
 on:
   push:
@@ -24,4 +24,5 @@ jobs:
       - name: install depedencies
         run: npm install
     
+
    
