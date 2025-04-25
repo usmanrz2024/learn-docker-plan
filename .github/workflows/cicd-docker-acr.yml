@@ -2,9 +2,9 @@ name: Nodejs CI
 
 on:
   push:
-    branches: staging
+    branches: production
   pull_request:
-    branches: staging
+    branches: production
 
 
 jobs:
@@ -19,9 +19,9 @@ jobs:
       - name: use nodeks
         uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '23.0.0'
         
       - name: install depedencies
         run: npm install
-
+    
    
