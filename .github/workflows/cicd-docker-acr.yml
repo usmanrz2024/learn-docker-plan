@@ -41,6 +41,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{secrets.AZURE_REPOSITORY_URL}}/${{secrets.ACR_USERNAME}}/${{github.head_ref}}     
+          tags: ${{secrets.AZURE_REPOSITORY_URL}}/${{secrets.ACR_USERNAME}}/staging/v1.0.0    
           file: ./Dockerfile
      
