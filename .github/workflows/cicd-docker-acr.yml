@@ -2,11 +2,11 @@ name: Nodejs CI/CD
 
 on:
   push:
-    branches: main
+    branches: staging
     tags:
       - 'v*.*.*'
   pull_request:
-    branches: main
+    branches: staging
 
 
 jobs:
