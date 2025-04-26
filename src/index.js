@@ -1,2 +1,2 @@
-console.log("Hello, Jenkins Pipelines!")
+console.log("Hello, Jenkins Pipeline!")
 

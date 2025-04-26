@@ -2,9 +2,11 @@ name: Nodejs CI/CD
 
 on:
   push:
-    branches: production
+    branches: main
+    tags:
+      - 'v*.*.*'
   pull_request:
-    branches: production
+    branches: main
 
 
 jobs:
@@ -13,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name : checkout repo
+      - name : checkout repository
         uses: actions/checkout@v4
       
       - name: use nodeks
@@ -23,6 +25,21 @@ jobs:
         
       - name: install depedencies
         run: npm install
-    
-
    
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        
+      - name: Login to Acr
+        uses: docker/login-action@v1
+        with:
+          registry: ${{secrets.AZURE_REPOSITORY_URL}}
+          username: ${{secrets.ACR_USERNAME}}
+          password: ${{secrets.ACR_PASSWORD}}
+
+      - name: Build and Push container image to ACR
+        uses: docker/build-push-actions@v2
+        with:
+          push: true
+          tags: ${{secrets.AZURE_REPOSITORY_URL}}/${{secrets.ACR_USERNAME}}/${{github.head_ref}}/${{github.sha}}     
+          file: ./Dockerfile
+     
