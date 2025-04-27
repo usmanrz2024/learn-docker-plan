@@ -1,6 +1,5 @@
 pipeline {
     agent { label 'ubuntu' } // Assuming you have an Ubuntu agent
-    tools {nodejs "NODEJS"}
     environment {
         AZURE_REPOSITORY_URL = credentials('AZURE_REPOSITORY_URL') // Define Jenkins Credentials for secrets
         ACR_USERNAME = credentials('ACR_USERNAME')
