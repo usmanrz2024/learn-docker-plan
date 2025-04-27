@@ -1,5 +1,9 @@
 pipeline {
     agent { label 'ubuntu' } // Assuming you have an Ubuntu agent
+     tools {
+        nodejs 'node-18' 
+    }
+    
     environment {
         AZURE_REPOSITORY_URL = credentials('AZURE_REPOSITORY_URL') // Define Jenkins Credentials for secrets
         ACR_USERNAME = credentials('ACR_USERNAME')
@@ -26,13 +30,8 @@ pipeline {
             }
         }
 
-        stage('Use NodeJS') {
-            tools {
-                nodejs 'node-18' // Assuming NodeJS 18 is installed and configured in Jenkins tools
-            }
-        }
-
-        stage('Install Dependencies') {
+    
+        stage('Node install Dependencies') {
             steps {
                 sh 'npm install'
             }
