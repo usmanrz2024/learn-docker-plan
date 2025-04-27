@@ -58,7 +58,7 @@ pipeline {
                 sh '''
                     docker buildx build --push \
                         --file Dockerfile \
-                        --tag $AZURE_REPOSITORY_URL/$ACR_USERNAME/staging:v1.0.0 \
+                        --tag $AZURE_REPOSITORY_URL/$ACR_USERNAME/staging-jenkins:v1.0.0 \
                         .
                 '''
             }
