@@ -11,7 +11,7 @@ pipeline {
     }
 
     triggers {
-        pollSCM('* * * * *') // optional: for automatic polling, replace with webhook if needed
+        pollSCM('H/5* * * * *') // optional: for automatic polling, replace with webhook if needed
     }
 
     stages {
@@ -28,10 +28,18 @@ pipeline {
                 }
             }
         }
+        stage('Docker Cleanup') {
+            steps {
+                 sh '''
+                      docker system prune -f
+                 '''
+             }
+        }
 
         stage('Set up Docker Buildx') {
             steps {
                 sh '''
+                    docker buildx rm mybuilder || true      
                     docker buildx create --use --name mybuilder || true
                     docker buildx inspect mybuilder --bootstrap
                 '''
