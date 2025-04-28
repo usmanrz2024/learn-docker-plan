@@ -11,7 +11,7 @@ pipeline {
     }
 
     triggers {
-        pollSCM('H/5* * * * ') // optional: for automatic polling, replace with webhook if needed
+        pollSCM('H/5 * * * *') // poll every 5 minutes
     }
 
     stages {
